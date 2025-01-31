@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% include 'app/navbar.html' %}
+{% block content %}
+<div class="appointment-container">
+    <div class="appointment-card">
+        <h2 class="appointment-title">Update Appointment</h2>
+        <form method="post" class="appointment-form">
+            {% csrf_token %}
+
+            <!-- Patient Selection -->
+            <div class="form-group">
+                <label for="id_patient" class="form-label">Patient:</label>
+                <label for="id_patient" class="form-control">{{ form.instance.patient.name }}</label>
+            </div>
+
+            <!-- Doctor Selection -->
+            <div class="form-group">
+                <label for="id_doctor" class="form-label">Doctor:</label>
+                <label for="id_patient" class="form-control">{{ form.instance.doctor.first_name }}</label>
+            </div>
+
+            <!-- Appointment Time -->
+            <div class="form-group">
+                <label for="id_appointment_time" class="form-label">Appointment Time:</label>
+                <input type="datetime-local" id="id_appointment_time" name="appointment_time" class="form-control" value="{{ form.appointment_time.value }}">
+            </div>
+
+            <!-- Status -->
+            <div class="form-group">
+                <label for="id_status" class="form-label">Status:</label>
+                <select id="id_status" name="status" class="form-control">
+                    {% for status_value, status_label in form.fields.status.choices %}
+                        <option value="{{ status_value }}" {% if status_value == form.status.value %}selected{% endif %}>{{ status_label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Reason -->
+            <div class="form-group">
+                <label for="id_reason" class="form-label">Reason:</label>
+                <textarea id="id_reason" name="reason" class="form-control">{{ form.reason.value }}</textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Update Appointment</button>
+            </div>
+        </form>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="{% url 'home' %}" class="back-btn">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

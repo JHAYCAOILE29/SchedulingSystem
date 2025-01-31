@@ -1,0 +1,46 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+{% include 'app/navbar.html' %}
+<div class="admin-panel-container">
+    <h1 class="admin-panel-title">Admin Panel</h1>
+    <hr class="divider">
+
+    <!-- Dashboard Section -->
+    <div class="dashboard-container">
+        <!-- Patients Card -->
+        <div class="dashboard-card">
+            <h2>Total Patients</h2>
+            <p class="count">{{ total_patients }}</p>
+        </div>
+
+        <!-- Doctors Card -->
+        <div class="dashboard-card">
+            <h2>Total Doctors</h2>
+            <p class="count">{{ total_doctors }}</p>
+        </div>
+
+        <!-- Appointments Card -->
+        <div class="dashboard-card">
+            <h2>Total Appointments</h2>
+            <p class="count">{{ total_appointments }}</p>
+        </div>
+    </div>
+    <hr class="divider">
+
+    <!-- Add Options -->
+    <div class="action-buttons">
+        <a href="{% url 'appoint_list' %}" class="btn btn-primary">+ Manage Appointments</a>
+        <a href="{% url 'doctor_list' %}" class="btn btn-secondary">+ Manage Doctors</a>
+        <a href="{% url 'patient_list' %}" class="btn btn-secondary">+ Manage Patients</a>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'home' %}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

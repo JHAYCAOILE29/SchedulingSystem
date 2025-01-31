@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-4">Doctor Details</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="fs-5"><strong>First Name:</strong> {{ doctor.first_name }}</p>
+                    <p class="fs-5"><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+                    <p class="fs-5"><strong>Reason:</strong> {{ doctor.email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="fs-5"><strong>Phone:</strong> {{ doctor.phone_number }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center mt-4">
+                <a href="{% url 'doctor_update' doctor.pk %}" class="btn btn-primary btn-lg me-3">Edit Doctor</a>
+                <a href="{% url 'doctor_delete' doctor.pk %}" class="btn btn-danger btn-lg">Remove Doctor</a>
+                <a href="{% url 'doctor_list' %}" class="btn btn-secondary btn-lg me-3">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

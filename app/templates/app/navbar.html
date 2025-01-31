@@ -1,0 +1,35 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+        <!-- Brand Logo and Name -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" width="40" height="40" class="me-2">
+            <span class="fw-bold text-primary">BRGY. Medical Services</span>
+        </a>
+
+        <!-- Toggle Button for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Links -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <div class="d-flex align-items-center">
+                {% if user.is_authenticated %}
+                    <!-- Logout Button -->
+                    <form action="{% url 'logout' %}" method="post" class="mb-0">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fas fa-sign-out-alt me-1"></i>Log Out
+                        </button>
+                    </form>
+                {% else %}
+                    <!-- Login Button -->
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-sm">
+                        <i class="fas fa-sign-in-alt me-1"></i>Log In
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

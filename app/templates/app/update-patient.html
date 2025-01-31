@@ -1,0 +1,50 @@
+{% extends 'app/base.html' %}
+
+{% block title %}
+<title>Edit Profile</title>
+{% endblock title %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-card">
+        <h2 class="profile-title">Edit Profile</h2>
+        <form method="post" class="profile-form">
+            {% csrf_token %}
+            
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <label for="id_date_of_birth" class="form-label">Date of Birth:</label>
+                <input type="date" id="id_date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value }}" class="form-input" required>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label for="id_email" class="form-label">Email:</label>
+                <input type="email" id="id_email" name="email" value="{{ form.email.value }}" class="form-input" required>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+                <label for="id_phone_number" class="form-label">Phone Number:</label>
+                <input type="text" id="id_phone_number" name="phone_number" value="{{ form.phone_number.value }}" class="form-input" required>
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="id_address" class="form-label">Address:</label>
+                <textarea id="id_address" name="address" class="form-input" required>{{ form.address.value }}</textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Save Changes</button>
+            </div>
+        </form>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="{% url 'home' %}" class="back-btn">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

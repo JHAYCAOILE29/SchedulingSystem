@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+    <form action="{% url 'appoint_delete' object.pk %}" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete? {{object.patient}}</p> 
+        <button type="submit">Delete</button>
+    </form>
+{% endblock %}

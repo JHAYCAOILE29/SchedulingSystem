@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+{% include 'app/navbar.html' %}
+{% block content %}
+<div class="appointment-container">
+    <div class="appointment-card">
+        <h2 class="appointment-title">Request Appointment</h2>
+        <form method="post" class="appointment-form">
+            {% csrf_token %}
+
+            <!-- Doctor Selection -->
+            <div class="form-group">
+                <label for="doctor" class="form-label">Doctor:</label>
+                <select id="doctor" name="doctor" class="form-input" required>
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor.id }}">{{ doctor.first_name }} {{ doctor.last_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Appointment Time -->
+            <div class="form-group">
+                <label for="appointment_time" class="form-label">Appointment Time:</label>
+                <input type="datetime-local" id="appointment_time" name="appointment_time" class="form-input" required>
+            </div>
+
+            <!-- Reason -->
+            <div class="form-group">
+                <label for="reason" class="form-label">Reason:</label>
+                <textarea id="reason" name="reason" rows="4" class="form-input" required></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="submit-btn">Request Appointment</button>
+            </div>
+        </form>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="{% url 'home' %}" class="back-btn">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

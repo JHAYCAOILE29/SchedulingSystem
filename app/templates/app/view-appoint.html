@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+{% block title %}
+<title>Appointment Details</title>
+{% endblock title %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-4">Appointment Details</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="fs-5"><strong>Patient:</strong> {{ appoint.patient }}</p>
+                    <p class="fs-5"><strong>Time:</strong> {{ appoint.appointment_time }}</p>
+                    <p class="fs-5"><strong>Reason:</strong> {{ appoint.reason }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="fs-5"><strong>Doctor:</strong> {{ appoint.doctor }}</p>
+                    <p class="fs-5"><strong>Status:</strong> 
+                        <span class="badge 
+                            {% if appoint.status == 'Pending' %}bg-warning
+                            {% elif appoint.status == 'Confirmed' %}bg-success
+                            {% elif appoint.status == 'Cancelled' %}bg-danger
+                            {% else %}bg-secondary{% endif %}">
+                            {{ appoint.status }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center mt-4">
+                <a href="{% url 'user_appointments' %}" class="btn btn-secondary btn-lg me-3">Back to Appointments</a>
+                {% if appoint.status == 'Pending' %}
+                    <a href="{% url 'appoint_update' appoint.id %}" class="btn btn-primary btn-lg me-3">Edit Appointment</a>
+                    <a href="{% url 'appoint_delete' appoint.id %}" class="btn btn-danger btn-lg">Cancel Appointment</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

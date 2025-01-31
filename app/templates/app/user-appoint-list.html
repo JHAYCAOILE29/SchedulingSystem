@@ -1,0 +1,67 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="appointments-container">
+    <h2 class="appointments-title">Your Appointments</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search appointments..." class="search-input">
+        <button class="search-btn">Search</button>
+    </div>
+
+    {% if appointments %}
+        <div class="table-container">
+            <table class="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Appointment Time</th>
+                        <th>Status</th>
+                        <th>Reason</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for appointment in appointments %}
+                    <tr>
+                        <td>{{ appointment.doctor.first_name }} {{ appointment.doctor.last_name }}</td>
+                        <td>{{ appointment.appointment_time }}</td>
+                        <td>{{ appointment.status }}</td>
+                        <td>{{ appointment.reason }}</td>
+                        <td>
+                            <a href="{% url 'appoint_view' appointment.pk %}" class="action-link view-link">View</a>
+                            <a href="{% url 'appoint_delete' appointment.pk %}" class="action-link delete-link">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="no-appointments">No appointments found.</p>
+    {% endif %}
+
+    <!-- Back Link -->
+    <div class="back-link">
+        <a href="{% url 'home' %}" class="back-btn">Back to Home</a>
+    </div>
+</div>
+
+<!-- JavaScript for Search Functionality -->
+<script>
+    document.getElementById('searchInput').addEventListener('input', function () {
+        const searchQuery = this.value.toLowerCase();
+        const rows = document.querySelectorAll('.appointments-table tbody tr');
+
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            if (text.includes(searchQuery)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

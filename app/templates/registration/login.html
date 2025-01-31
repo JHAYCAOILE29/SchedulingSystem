@@ -1,0 +1,32 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+        <!-- Brand Logo and Name -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" width="40" height="40" class="me-2">
+            <span class="fw-bold text-primary">BRGY. Medical Services</span>
+        </a>
+    </div>
+</nav>
+    <div class="login-container">
+        <div class="login-card">
+            <form action="" method="post" class="login-form">
+                <h1 class="login-title">Log In</h1>
+                {% csrf_token %}
+                <div class="input-box">
+                    <input type="text" placeholder="Username" name="username" required>
+                    <i class="fas fa-user input-icon"></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" placeholder="Password" name="password" required>
+                    <i class="fas fa-lock input-icon"></i>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <p class="signup-link">Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

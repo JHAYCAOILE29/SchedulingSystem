@@ -1,0 +1,30 @@
+{% extends 'app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-4">Doctor Details</h1>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p class="fs-5"><strong>Name:</strong> {{ patient.name }}</p>
+                    <p class="fs-5"><strong>Date of Birth:</strong> {{ patient.date_of_birth }}</p>
+                    <p class="fs-5"><strong>Email:</strong> {{ patient.email }}</p>
+                </div>
+                <div class="col-md-6">
+                    <p class="fs-5"><strong>Phone:</strong> {{ patient.phone_number }}</p>
+                    <p class="fs-5"><strong>Address:</strong> {{ patient.address }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center mt-4">
+                <a href="{% url 'delete_patient' patient.pk %}" class="btn btn-danger btn-lg">Remove User</a>
+                <a href="{% url 'patient_list' %}" class="btn btn-secondary btn-lg me-3">Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

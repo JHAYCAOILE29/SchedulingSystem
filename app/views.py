@@ -121,13 +121,7 @@ class PatientUpdateView(UpdateView):
 class PatientDeleteView(DeleteView):
     model = Patient
     template_name = 'app/delete-patient.html'  
-    success_url = reverse_lazy('home') 
-    
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        return queryset.filter(name=self.request.user)
-
-
+    success_url = reverse_lazy('patient_list') 
 
 class DoctorListView(ListView):
     model = Doctor

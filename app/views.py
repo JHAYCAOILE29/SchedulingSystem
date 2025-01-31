@@ -143,18 +143,18 @@ class AddDoctor(CreateView):
     model = Doctor
     fields = ['first_name', 'last_name', 'specialization', 'email', 'phone_number']
     template_name = 'app/add-doctor.html'  
-    success_url = reverse_lazy('list_doctor')
+    success_url = reverse_lazy('doctor_list')
 
 class DoctorUpdateView(UpdateView):
     model = Doctor
     fields = ['first_name', 'last_name', 'specialization', 'email', 'phone_number'] 
     template_name = 'app/update-doctor.html' 
-    success_url = reverse_lazy('list_doctor')
+    success_url = reverse_lazy('doctor_list')
 
 class DoctorDeleteView(DeleteView):
     model = Doctor
     template_name = 'app/delete-doctor.html' 
-    success_url = reverse_lazy('list_doctor')
+    success_url = reverse_lazy('doctor_list')
 
 class PatientListView(ListView):
     model = Patient
